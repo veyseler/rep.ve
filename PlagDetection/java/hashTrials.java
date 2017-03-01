@@ -12,14 +12,14 @@ public class hashTrials {
 		{
 			
 			for (int i = toHash.length-1 ; i >=0 ; i--) {
-				result += (Integer.parseInt(toHash[i]))  * (Math.pow(2, 9-i));
+				result += (Integer.parseInt(toHash[i]))  * (Math.pow(2, 4-i));
 			}
 		}
 		
 		else
 		{
 			int prevIntVal=Integer.parseInt(prevFirstVal);
-			result=(int) ( (prevVal -(prevIntVal*(Math.pow(2, 9)) ) ) *2 ) + (Integer.parseInt(toHash[toHash.length-1])) 	;
+			result=(int) ( (prevVal -(prevIntVal*(Math.pow(2, 4)) ) ) *2 ) + (Integer.parseInt(toHash[toHash.length-1])) 	;
 			
 		}
 		return result;

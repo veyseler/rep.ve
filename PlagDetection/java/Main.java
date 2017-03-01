@@ -12,7 +12,7 @@ public class Main {
 	{
 		int rows=windows.size();
 		int cols=windows.get(0).size();
-		FileWriter writer=new FileWriter ("001-Short.txt");
+		FileWriter writer=new FileWriter ("001-Short2.txt");
 		BufferedWriter bw=new BufferedWriter (writer);
 		
 		
@@ -21,13 +21,15 @@ public class Main {
 			for (int j = 0; j < cols; j++) {
 				if(j!= cols-1)
 					bw.write(windows.get(i).get(j) + ", " );
-				else
-					bw.write(windows.get(i).get(j)  );
+				else{
+					int lastEl=windows.get(i).get(j);
+					bw.write(  lastEl+""  );
+				}
 			}
 		
 			bw.write(")\n");
 		}
-		
+		bw.flush();
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -43,7 +45,7 @@ public class Main {
 		//Putting k grams in to an ArrayList
 		int tokenLen=tokensArr.length;
 		
-		for(int i=0;i<=tokenLen-10;i++)
+		for(int i=0;i<=tokenLen-10;i++) //k=10
 		{
 			String k_gram="";
 			StringBuilder builder=new StringBuilder(k_gram);
@@ -58,15 +60,17 @@ public class Main {
 		
 		ArrayList<ArrayList <Integer>> windows=new ArrayList<ArrayList <Integer>> ();
 		
-		int prevVal=0;
-		String prevFirstVal="";
+		
 		boolean isFinished=false;
 		for(int i=0;!isFinished && i<=k_grams.size();i++)
 		{
-			ArrayList<Integer> window =new ArrayList<>();
+			ArrayList<Integer> window =new ArrayList<Integer>();
+			int cnt=0;
+			int prevVal=0;
+			String prevFirstVal="";
 			for (int j = i; !isFinished && j < i+10; j++) {
 				
-			
+				cnt++;
 				int hashed=(hashTrials.hash(k_grams.get(j), prevVal, prevFirstVal));
 				window.add(hashed);
 				prevFirstVal=k_grams.get(j).substring(0,
@@ -81,7 +85,7 @@ public class Main {
 				}
 			}
 			windows.add(window);
-			
+			System.out.println(cnt);
 		}
 		
 		print(windows);
